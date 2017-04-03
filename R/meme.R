@@ -29,8 +29,7 @@ meme <- R6::R6Class("meme",
       self$voldir <- paste0(self$homedir, ":", "/home/biodev")
     },
 
-    meme = function(dataset = NULL, args = NULL, outfile = "meme_out", logfile = "/dev/null") {
-      cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "meme", dataset, args, "1>", logfile)
+      cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "meme", dataset, args)#, "2>", logfile)
       system(cmd)
     }
 
