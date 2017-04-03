@@ -47,6 +47,16 @@ meme <- R6::R6Class("meme",
 
       cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "fimo", args, motif, sequence)#, "2>", logfile)
       system(cmd)
+    },
+
+    tomtom = function(query = NULL, target = NULL, args = NULL, outdir = "tomtom_out", force_clean = TRUE) { #, logfile = "/dev/null") {
+      if (force_clean)
+        args <- paste("-oc", outdir, args)
+      else
+        args <- paste("-o", outdir, args)
+
+      cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "tomtom", args, query, target)#, "2>", logfile)
+      system(cmd)
     }
 
   ))
