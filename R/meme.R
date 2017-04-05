@@ -17,6 +17,8 @@ meme <- R6::R6Class("meme",
     },
 
     meme = function(dataset = NULL, args = NULL, outdir = "meme_out", force_clean = TRUE) { #, logfile = "/dev/null") {
+      if (is.null(dataset)) stop("argument 'dataset' is required.")
+
       if (force_clean)
         args <- paste("-oc", outdir, args)
       else
