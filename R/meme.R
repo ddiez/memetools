@@ -13,20 +13,16 @@
 #'
 #' @export
 meme <- R6::R6Class("meme",
+  inherit = biodevtools::biodev,
   public = list(
     image = "ddiez/meme",
-    outdir = ".",
-    homedir = NULL,
-    voldir = NULL,
-    dockerbin = "docker",
 
     initialize = function(image = self$image, dir = getwd()) {
+      super$initialize(...)
+      self$image <- image
+
       cmd <- paste("docker pull", image)
       system(cmd)
-
-      self$image <- image
-      self$homedir <- dir
-      self$voldir <- paste0(self$homedir, ":", "/home/biodev")
     },
 
     meme = function(dataset = NULL, args = NULL, outdir = "meme_out", force_clean = TRUE) { #, logfile = "/dev/null") {
