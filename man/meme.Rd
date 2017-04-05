@@ -6,16 +6,9 @@
 \title{Initialize a MEME docker image}
 \format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
-meme$new()
+meme
 }
 \description{
 Initializes a MEME docker image and calls specific methods
-}
-\examples{
-h <- meme$new()
-h$image
-h$outdir
-h$meme("sequences.fa")
-
 }
 \keyword{datasets}

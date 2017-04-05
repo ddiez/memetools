@@ -2,15 +2,6 @@
 #'
 #' Initializes a MEME docker image and calls specific methods
 #'
-#' @usage
-#' meme$new()
-#'
-#' @examples
-#' h <- meme$new()
-#' h$image
-#' h$outdir
-#' h$meme("sequences.fa")
-#'
 #' @export
 meme <- R6::R6Class("meme",
   inherit = biodevtools::biodev,
