@@ -8,7 +8,7 @@ meme <- R6::R6Class("meme",
   public = list(
     image = "ddiez/meme",
 
-    initialize = function(image = self$image, dir = getwd()) {
+    initialize = function(image = self$image, ...) {
       super$initialize(...)
       self$image <- image
 
