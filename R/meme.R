@@ -12,7 +12,7 @@ meme <- R6::R6Class("meme",
       super$initialize(...)
       self$image <- image
 
-      cmd <- paste("docker pull", image)
+      cmd <- paste(self$dockerbin, "pull", image)
       system(cmd)
     },
 
