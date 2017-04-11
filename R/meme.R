@@ -12,11 +12,11 @@ meme <- R6::R6Class("meme",
       super$initialize(...)
       self$image <- image
 
-      cmd <- paste(self$dockerbin, "pull", image)
-      system(cmd)
+      args <- paste("pull", self$image)
+      system2(self$dockerbin, args)
     },
 
-    meme = function(dataset = NULL, args = NULL, outdir = "meme_out", force_clean = TRUE) { #, logfile = "/dev/null") {
+    meme = function(dataset = NULL, args = NULL, outdir = "meme_out", force_clean = TRUE) {
       if (is.null(dataset)) stop("argument 'dataset' is required.")
 
       if (force_clean)
@@ -24,28 +24,28 @@ meme <- R6::R6Class("meme",
       else
         args <- paste("-o", outdir, args)
 
-      cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "meme", dataset, args)#, "2>", logfile)
-      system(cmd)
+      args <- paste("run", "-v", self$voldir, self$image, "meme", dataset, args)
+      system2(self$dockerbin, args)
     },
 
-    fimo = function(motif = NULL, sequence = NULL, args = NULL, outdir = "fimo_out", force_clean = TRUE) { #, logfile = "/dev/null") {
+    fimo = function(motif = NULL, sequence = NULL, args = NULL, outdir = "fimo_out", force_clean = TRUE) {
       if (force_clean)
         args <- paste("-oc", outdir, args)
       else
         args <- paste("-o", outdir, args)
 
-      cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "fimo", args, motif, sequence)#, "2>", logfile)
-      system(cmd)
+      args <- paste("run", "-v", self$voldir, self$image, "fimo", args, motif, sequence)#, "2>", logfile)
+      system2(self$dockerbin, args)
     },
 
-    tomtom = function(query = NULL, target = NULL, args = NULL, outdir = "tomtom_out", force_clean = TRUE) { #, logfile = "/dev/null") {
+    tomtom = function(query = NULL, target = NULL, args = NULL, outdir = "tomtom_out", force_clean = TRUE) {
       if (force_clean)
         args <- paste("-oc", outdir, args)
       else
         args <- paste("-o", outdir, args)
 
-      cmd <- paste(self$dockerbin, "run", "-v", self$voldir, self$image, "tomtom", args, query, target)#, "2>", logfile)
-      system(cmd)
+      args <- paste("run", "-v", self$voldir, self$image, "tomtom", args, query, target)
+      system2(self$dockerbin, args)
     }
 
   ))
