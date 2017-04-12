@@ -16,7 +16,7 @@ meme <- R6::R6Class("meme",
       system2(self$dockerbin, args)
     },
 
-    meme = function(dataset = NULL, args = NULL, outdir = "meme_out", force_clean = TRUE, help = FALSE) {
+    meme = function(dataset = NULL, args = "", outdir = "meme_out", force_clean = TRUE, help = FALSE) {
       if (help || grepl("-h", args)) {
         args <- paste("run", self$image, "meme", "-h")
         system2(self$dockerbin, args)
@@ -33,7 +33,7 @@ meme <- R6::R6Class("meme",
       }
     },
 
-    fimo = function(motif = NULL, sequence = NULL, args = NULL, outdir = "fimo_out", force_clean = TRUE, help = FALSE) {
+    fimo = function(motif = NULL, sequence = NULL, args = "", outdir = "fimo_out", force_clean = TRUE, help = FALSE) {
       if (help || grepl("-h", args)) {
         args <- paste("run", self$image, "fimo", "-h")
         system2(self$dockerbin, args)
@@ -48,7 +48,7 @@ meme <- R6::R6Class("meme",
       }
     },
 
-    tomtom = function(query = NULL, target = NULL, args = NULL, outdir = "tomtom_out", force_clean = TRUE, help = FALSE) {
+    tomtom = function(query = NULL, target = NULL, args = "", outdir = "tomtom_out", force_clean = TRUE, help = FALSE) {
       if (help || grepl("-h", args)) {
         args <- paste("run", self$image, "tomtom", "-h")
         system2(self$dockerbin, args)
