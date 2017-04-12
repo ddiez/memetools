@@ -1,0 +1,51 @@
+---
+title: "Introduction to memetools"
+author: "Diego Diez"
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('memetools')`"
+output:
+    rmarkdown::html_document
+abstract: >
+  Introduction to the memetools package.
+vignette: >
+ %\VignetteIndexEntry{Introduction to memetools}
+ %\VignetteEngine{knitr::rmarkdown}
+ %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+library(BiocStyle)
+library(memetools)
+```
+
+# Introduction
+
+memetools enables to run hmmer from R using a docker image.
+
+```{r}
+h <- memetools::meme$new()
+h
+```
+
+You can access methods help using `help = TRUE` or passing `args = "-h"` to MEME methods.
+
+```{r}
+h$meme(help = TRUE)
+```
+
+You can specify the output directory By default `meme` outputs all files to `meme_out`.
+
+```{r}
+h$meme(dataset = "uniprot.fasta", outdir = "meme_ras", args = "-nmotifs 10")
+```
+
+We can read the results using the `motiftools` package.
+
+```{r}
+library(motiftools)
+x <- motiftools::readMEME("meme_ras/meme.xml")
+x
+motiftools::plotMotifMatrix(x)
+```
+
