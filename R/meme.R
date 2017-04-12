@@ -38,6 +38,9 @@ meme <- R6::R6Class("meme",
         args <- paste("run", self$image, "fimo", "-h")
         system2(self$dockerbin, args)
       } else {
+        if (is.null(motif)) stop("argument 'motif' is required.")
+        if (is.null(sequence)) stop("sequence 'dataset' is required.")
+
         if (force_clean)
           args <- paste("-oc", outdir, args)
         else
@@ -53,6 +56,9 @@ meme <- R6::R6Class("meme",
         args <- paste("run", self$image, "tomtom", "-h")
         system2(self$dockerbin, args)
       } else {
+        if (is.null(query)) stop("argument 'query' is required.")
+        if (is.null(target)) stop("sequence 'target' is required.")
+
         if (force_clean)
           args <- paste("-oc", outdir, args)
         else
