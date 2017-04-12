@@ -3,10 +3,6 @@ title: "memetools"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Installation
 
 You can install memetools from github with:
